@@ -1,0 +1,28 @@
+Review 1: Khalid Belhajjame
+2: (accept)
+The authors present in this paper BCite, a web application for the creation of open citation with an existing RDF repository. The authors also specify the workflow to be used, and showcase how BCite can be used by harvesting the citation of a number of articles.
+
+I find the topic of this paper interesting, and the utility of the tool, which albeit simple, may have a real impact in the way citations are harvested and made available on the OCC repository. I, therefore, think that this paper should be accepted for presentation in the workshop, and would encourage the authors to perform a live demonstration of the tool during the demonstration.
+
+Minor comment:
+The authors mentioned that OCC provides citations data as RDF and provides access to them using SPARQL endpoint and Rest API. While I was able to find the rest API provided by OCC, I couldn't find pointers to the RDF repository or the Sparql endpoint. It would be good if the authors provide this information.
+-----------
+-----------
+-----------
+Review 2: Amrapali Zaveri
+2: (accept)
+The paper proposes a web application named BCite, which is a service for bibliographic data curation and generation of RDF-based open citation data compliant with the OpenCitations Data Model. The methodology proposed is sound and the work itself addresses a very important problem in current literature. Thus, if adopted, the work would have a huge impact in the quality of current publications and especially the references.
+There are a few questions that come to mind and there are a few details missing that are as follows:
+- there is a lot of workload on the editor to do the curation - is it possible to automated some of the process. one idea could be that the citation could be first automatically checked for correctness and only if they are incorrect should the editor check them
+- what does the RDF data look like? how does the BCite API create the RDF representation?
+- why was Blazegraph chosen?
+- the usabiity of BCite should also be evaluated
+- in figure 2, "The user inputs metadata about citing and cited entities" - who is the user? can these fields be automatically populated so as to reduce the manual workload?
+- in the workflow for the step "(b) acknowledge that the proposed reference text refers to the intended cited article and modify some part of it" - is the cited text also shown to the user?
+
+Typo
+- "coverage of of" - "coverage of"
+- "Part fo" - "Part of"
+- "demand them the full creation" - please rephrase
+- "Computer Science (O-Refs)" - CS-Refs
+- "2" - "two"

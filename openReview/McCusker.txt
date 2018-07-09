@@ -1,0 +1,41 @@
+Review 1: Alasdair Gray
+1: (weak accept)
+The paper presents a framework for generating provenance-driven knowledge graphs from nanopublications. The framework is demonstrated through the generation of BioKG with content from DrugBank, Uniprot, and OBO ontologies.
+
+The authors argue that a knowledge-graph is more than data in a data store; it is the generation process, the user interfaces enable interaction with the data and visualisation of the data. A knowledge-graph framework needs to deal with evolving data, not a generate once warehouse, and should be provenance aware.
+
+The software framework is not explained, just a series of links to web resources and a code repository.
+
+It is not clear why nanopublications are required? Unfortunately the server went down when I was exploring the system.
+
+Do data sources need to be published as nanopublications to be used in WhyIs?
+
+Minor issues:
+
+- Section 2 does not seem to fit the paper narrative, perhaps incorporated into Section 4
+- Some things not explained very well, e.g. ReDrugS - what is it?
+
+--------
+--------
+--------
+Review 2: Angelo Antonio Salatino
+In this paper, the authors present an approach for knowledge graph development. The approach seems very interesting because is able to automatically generate knowledge within a unified semantic scheme. The paper is very well written and easy to read.
+In addition, the authors made available their code (i.e., on GitHub), which makes their experiments easier to be reproduced and extended.
+
+The topics and the amount of work presented make this paper suitable for SEMSCI workshop.
+
+However, here I am raising some concerns, I would like the authors to address in the next version of this manuscript.
+In the abstract you mention that this framework supports the creation of custom provenance-driven knowledge graphs. However, it is not clear to me how this approach fosters provenance. Throughout the approach I didn’t manage to find this feature or at least it wasn’t easy to identify. Indeed, after section 2 the term provenance is used again only in the conclusions.
+
+In Section 4, you start with “[w]e demonstrate Whyis […]”. However, the use of the word “demonstrate” implies that a piece of evidence or proof is following. Since this is currently missing, perhaps you want to rephrase with ‘show’ or ‘present’. On the other hand, do you have means to estimate its effectiveness (i.e., accuracy)?
+
+In the conclusion section, the authors briefly sum up Whyis without providing any insight on how they plan to further improve or extend this project.
+
+Angelo Salatino
+http://salatino.org/
+--------
+--------
+--------
+Review 3: Craig Knoblock.
+1: (weak accept)
+This paper promotes the idea of using nanopublications to create knowledge graphs with detailed provenance information. I like the general idea behind the paper and it sounds like they created an interesting bio application. However, the paper is short on the details of how this works and I didn't learn much about the approach beyond reading the abstract. I would like to know the details of what is contained in the nano-publications, how are they updated and maintained, how much extra data gets added to the knowledge graph to support this model, and does it make the maintenance and querying more costly. They have a very short section on how it is built for BioKG, but that is very high level. Then there is another section on how the linking is done, but it is unclear how that relates to the core idea of the paper. Overall, I would say this is a good idea, but poorly described and not evaluated.

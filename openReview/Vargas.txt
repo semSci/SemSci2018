@@ -1,0 +1,63 @@
+Review 1 - Alasdair Gray
+2: (accept)
+This is an 8 page full reseach paper that describes the generation of explanations, called narratives, based on the outcomes of running a model and the provenance trace of that run in the SWIM system. SWIM is a system for modelling water availability. It enables collaboration, sharing of data, and data reuse. This paper focuses on the narratives built around these models. How they are generated in both English and Spanish, and how these provide explanations of the model.
+
+The work is well grounded in the problem domain, with perhaps an over emphasis on Swain et al's work. It is missing the broader semantic web context of how similar systems have been developed for other application domains.
+
+Narratives are built up from provenance records when models are generated as well as model outputs. They are built around templates which are then populated at runtime. They aim to summarise and contextualise the model results.
+
+The authors focus on supporting a wide range of roles with wide ranging expertise (public to expert) and tasks.
+
+This is early stage work demonstrated with a proof of concept which is appropriate for a workshop. They plan to evaluate the narratives with stakeholders.
+
+What is missing is any link to the semantic web. However it is interesting work on presenting model outcomes and would be a good contribution to the workshop.
+
+Minor changes:
+
+- Why is your member of the public female and your water expert male? I would suggest using gender neutral text as you have for the academic.
+- Have colours used in Tables explained in captions rather than surrounding text
+------------
+------------
+------------
+
+Review 2 - Daniel Garijo
+2: (accept)
+This paper describes the SWIM narratives, a set of template-based automatically generated descriptions that aim to explain model execution results and their provenance to different types of users.
+
+The paper is well written, easy to follow and fits very well in the scope and theme of the workshop. I believe the topic addressed in this paper is important, as it aims to facilitate understandability of workflow results and to bring them closer to different types of users. I think this paper would be a nice addition to the SemSci workshop. Below I provide some comments that may help polish its final version.
+
+I was not able to access some of the resources described in this paper. The link for requesting narratives: http://visko.cybershare.utep.edu/swim-nlng/requestNarratives/requestNarratives/requestNarratives/requestNarratives/data?usid=1cc03d5&varName=urb_price&userType=all&focusArea=urban&region=El%20Paso&lang=en&varValueName=miuse&varValueRegion=EPMI_u_f Does not seem to produce any results to me(nothing happens when I hit the "try me" link I find in there).
+
+The method for querying and retrieving contents to generate the narrative is also unclear to me, as I cannot see how to perform queries and how complex they would be. An illustration query would help.
+
+It is not clear how the assumptions of the model are captured or explained, as well as the restrictions. However, in the text it is mentioned that this information is being used in the narratives. Is there a machine readable representation of this information?
+
+The term "Adjectives" is a little misleading, as they describe time series only.
+
+The paper lacks important methodological aspects that could ensure its reusability in other domains. For example, have the authors followed a methodology to identify the different stakeholders? Why have the ones in the paper been chosen and not others?
+
+In the text, the authors explain that par of the templates have a <template> tag and an <explanation> tag. I don't understand very well how are "explanations" generated. Is it another template? Are these hardcoded for every model?
+
+Page 5 describes the scenario being "retrieved from a provenance trace". I don't understand that statement.
+
+The paper claims to be using linked data, but it's unclear to me how the current approach uses ontologies or RDF, the vocabularies used, etc.
+
+The evaluation speaks about using machine learning for predicting the narrative of interest to a user. Could the authors elaborate this further?
+------------
+------------
+------------
+Review 3 - Marieke van Erp
+1: (weak accept)
+The paper describes a modelling framework to create narratives describing water sustainability scenarios. The motivation is that there are a lot of different models available for water sustainability, used by different stakeholders. The SWIM model should provide a means for different stakeholders to exchange information in an accessible way.
+
+I think the domain is very interesting and fitting to the workshop and the paper is well-written if somewhat preliminary. There are a few improvements that I think could tailor the paper more to the SemSci workshop and the SW community in general (i.e. people that do not have too much background information on water sustainability). It took a while for the task to become concrete to me, perhaps the authors can include a short scenario/task in their domain in the introduction. This may help readers get a better feel for the problem. The interface at https://water.cybershare.utep.edu/bucket_05/home was not that intuitive (probably because I didn’t know what the variables mean etc. but perhaps an example scenario with an explanation of what people are looking at could bre included. Furthermore, it wasn’t entirely clear to me if this framework is a tool to integrate different previously created water sustainability models that are mentioned in Section 1. It would be good if the authors could clarify the relation between SWIM and those models.
+
+As for the evaluation of the framework, in Section 3 the authors state that the system will be evaluated with stakeholders and with the scientific team. It would be good if the authors could elaborate a bit more on the second evaluation, namely on the validation of the content of the narrative and the model, as a technical evaluation would be very important to assess the framework’s strength and limitations. In the current form of the paper, these are unclear to me. It would for example be good to know how well the system scales to other stakeholders, users assuming multiple roles, conflicting information, and other languages. It would also be good to know how well the NLNG module performs and what the impact of possible errors there is.
+
+Overall, I think this paper would be a valuable contribution to the workshop and provide numerous discussion points on how SW technology can be used in different domains.
+
+Minor remarks:
+Section 2: it was discussed the need to better communicate … -> the need to better communicate the meaning of the integrated water models by providing context for inputs and outputs was discussed.
+Section 2.1: Is language precise enough to model all scenarios?
+Section 2.1 “SWIM’s for data visualization capabilities” it is unclear what these visualization capabilities are
+Section 2.2. “in English and Spanish language -> delete “language”

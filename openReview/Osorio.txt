@@ -1,0 +1,52 @@
+Review 1: Tomi Kauppinnen
+1: (weak accept)
+This paper is well written and deals with an interesting question on how to in fact allow for full reproducibility. The paper should spark interesting discussions at the workshop.
+
+However, I do not buy the sentence “The only approach so far that focused on conserving the environment of an experiment is [8]“ although [8] is of course a nice paper. Please check for instance o2r-project (http://o2r.info) or SHARE (https://www.sciencedirect.com/science/article/pii/S1877050911001207), but there are many other attempts of different kinds if you do a careful literature review. This will make the paper much more convincing.
+
+So I propose authors to rephrase the text accordingly to reflect that there is already work in this direction. Nevertheless, I think authors’ work still finds nicely a space among existing approaches.
+
+Minor detail: please carefully check your references, there is now some extra spaces, and lack of capital letters (e.g. “rdf”->“RDF”)
+
+------------
+------------
+------------
+Review 2: Natalia Villanueva-Rosales
+1: (weak accept)
+The authors of this paper address the problem of reproducing experiments. Authors introduce a system to describe computational environments used in in-silico experiments using annotated Docker containers and the automated annotation process.
+
+Authors analyzed a sample of Docker images DockerHub using the Clair project tool and the DockerPedia annotator to obtain software components, version, and any available metadata. The extracted information is annotated with the Docker ontology that reuses the WICUS ontology.
+
+A dataset of 140 million triples with information about Docker images was generated in this work. The authors show a SPARQL query but results are not included. The paper would benefit from showing the results of the query and explaining how results could be used by a final user (e.g., scientist). Given that the goal of this work is to facilitate reproducibility of experiments, do you show final users the results as RDF? Linking back to the objective of this work, how much of the sample data focuses on workflows and experiments? How was the extracted data validated?
+
+It seems that the metadata extracted is focused on packages and versions, metadata needed for the use of Dockers (i.e., implementation details). I am curious to know if future work includes extracting metadata about the purpose or function of the software provided in the Docker image, e.g., What does the software do? What resources (e.g., data, models) it provides? Showing the results of the query will better illustrate potential uses of such data.
+
+Authors mention that Shu et al. did a similar exercise but the data was not made public. Please explicitly indicate where the resulting dataset of this experiment can be found and how it can be accessed (e.g., RDF dump, endpoint). I was able to find the website of the project by using the base URI of the resources but it would be better for potential users to have the URLs clearly specified.
+
+This paper is relevant to the workshop and including the suggested additional information will benefit potential users of this system.
+
+Minor corrections-
+
+Section 2.2.
+The sentence "The images." seems to be missing content.
+
+There are several extra blank spaces before citations.
+------------
+------------
+------------
+Review 3: Paul Groth
+-1: (weak reject)
+This work describes the use of dockor hub as a foundation for reproducible experiments. They provide a system for generating linked data out of the metadata provided for docker images including the specification of an ontology therein (DockerPedia). Overall, I find the approach to providing a linked data knowledge graph from this sort of data quite interesting. Unfortunately, there are a couple of issues with the work:
+
+1) The notion that this approach is unique i.e. the statement that "The only approach so far that focused on conserving the environment of an experiment is [8]" is not the case. For example, the service https://mybinder.org is widely used to provide reproducible research based on docker. Likewise, the use of both contamination and virtual machines has been widely discussed in the literature e.g.:
+
+Carl Boettiger. 2015. An introduction to Docker for reproducible research. SIGOPS Oper. Syst. Rev. 49, 1 (January 2015), 71-79. DOI: http://dx.doi.org/10.1145/2723872.2723882
+
+2) There's no evaluation. How do we know the system is useful? Likewise, the authors cliam that they have a generated a large dataset but provide no link or discussion about how to access this dataset.
+
+Other points:
+- "workflow conservation problem" - you should define exactly what this problem is.
+- what is the tool from the clair project? Can you provide a reference or pointer?
+- Can you say why you chose the WISCUS ontology to extend? Instead of W3C standards like PROV? If you did this you could integrate with other services like git2prov?
+
+Overall, I think the DockerPedia idea is interesting but the authors need to do a better job of situating their work in the current discussion and providing a solid evaluation or at least preliminary evaluation.

@@ -1,0 +1,54 @@
+Review 1: Silvio Peroni
+1: (weak accept)
+In this paper, the authors introduce an approach for identifying figures and their components in research articles, and to classify such figures according to four different classes. They support the approach by discussing the results of an experiment they ran.
+
+The topic of the paper is very well aligned to the workshop and, despite it introduces very preliminary results, it can be used for starting a conversation on these topics. Thus, I would consider it appropriate for being included in the accepted papers.
+
+Some issues I would like to be addressed in the camera ready:
+
+- I thought the authors used XML as source format for extracting figures. However, in section 3.2, it seems they also used how these figures are shown, which is a typical characteristic of PDF files. I would suggest to clarify better this point.
+
+- It would be great to have available somewhere (e.g. on Figshare) the annotated dataset if figures presented in section 3.5, so as to make the experiment reproducible.
+
+- The related works section is pretty short, and it also misses some relevant works on the topic, such as https://link.springer.com/chapter/10.1007/11767978_21 and https://academic.oup.com/bioinformatics/article/20/16/2880/236814.
+
+Silvio Peroni
+http://orcid.org/0000-0003-0530-4305
+
+---------
+---------
+---------
+Review 2: Angelo Antonio Salatino
+2: (accept)
+This paper presents an approach to automatically extracting information from figures available within research papers. In particular, the authors present an infrastructure to extract evidence from images and text data in figures using deep learning.
+
+The main major issues I found while reading this manuscript is that some concepts might not be grasped from people that don’t have such domain-specific knowledge (i.e., in the field of biology). Another concern I have is whether the authors adopt any semantic technologies. I wonder how this approach enables open “semantic” science?
+
+Here follow some further concerns in the same order as the paper is read.
+In the introduction, you state that when extracting information from papers, biocurators usually examine the figures to determine whether a paper should be read deeply. Do you have any evidence?
+In the introduction, you also report that this infrastructure is an “initial effort”. This is perfectly suitable for a workshop paper, as the research it is not expected to have reached mature stage. However, whenever is possible, I expect to find some hints on how you plan to further improve or extend the different aspects of this infrastructure. This aspect is missing. In addition, also the Discussion section, which acts as conclusion section, is currently lacking future work.
+
+In the related work section, all the listed approaches, are just briefly described. There is not a critical aspect. For instance, has the Yolo approach been used in a task slightly similar to yours, before?
+In the figure subpanel extraction (Sec 3.4), you denote sub-figures using only uppercase letters (A, B, …). However, ordered lists and in particular sub-figures might be identified using lower-case letters, roman numbers and so on. Do you plan to consider also this peculiarity in future works?
+
+The section 3.6, text classification of experimental type, is not very clear especially from those who don’t have enough domain knowledge.
+
+In table 1, you show how you split the trains and test set. It is easy to see that the test set amounts between 20 to 25%. Which is a fair partition. However, have you tried to cross validate, perhaps with a ten-fold cross validation?
+
+Can you provide further information about the evaluation (i.e., configuration of cnns) for reproducibility purposes?
+
+Angelo Salatino
+http://salatino.org/
+
+-----------
+-----------
+-----------
+
+Review 3: Tobias Kuhn
+	
+2: (accept)
+This paper presents an approach to extract and analyze figures in scientific papers based on the type of experiments that were used for the shown results. The focus of the approach to tackle the problem of extracting the primary scientific contributions is very interesting and ambitious. Deep learning is applied in order to decompose and analyse the text and figures of papers. Intermediate results are then presented when applying this approach on papers presenting results about molecular interactions.
+
+Existing tools are applied to segment papers, and find figures, sub-figures, and their captions. Subfigures as well as figure captions are automatically classified based on their type. As the main component, the authors started with the existing YOLO tool, and then modified it, which lead to clearly better results. These results were also clearly better than a heuristic baseline approach they defined. Text classifications showed relatively poor results, which can be attributed to the larger number of types. Reducing these types indeed improved the performance.
+
+Overall the paper is very well written and interesting to read. The results are preliminary and clearly labeled as such, but certainly worth to be presented at the workshop. The only thing I was a bit missing was a clearer description of what this system is supposed to do eventually, such as what exactly a piece of evidence extracted from a paper would look like. Maybe a concrete manually created example, possibly together with a visual representation, would help to understand the future direction in this respect.

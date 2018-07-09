@@ -1,0 +1,25 @@
+Review 1: Idafen Santana-Perez
+2: (accept)
+The paper introduces the an approach for publishing scientific analysis using jupyter notebooks, aiming for better reproducibility and understandability of the process. The paper itself does not introduce any scientific contribution, but rather aims to provide a self-contained explanation on how a notebook can be used for publication.
+
+I found the paper highly interesting and nicely presented. The final discussion rises some interesting points for discussion, specially on how to achieve reproducibility on analysis involving dynamic data.
+
+Finally, I would like to remark that, even when this paper/notebook is quite simple in terms of the analysis conducted, being able to fully execute each step was interesting. Further discussion in this topic should address how to achieve this same reproducibility on more complex scenarios.
+-----------
+-----------
+-----------
+Review 2: Michel Dumontier
+0: (borderline paper)
+This paper describes a short study on using Jupyter notebooks to query drug sources from sparql endpoints and from pubchem. The notebook is well written and easy to follow. It identifies shortcomings in the notebook itself, in the way that different sources expose their (provenance) metadata, and in the difference in number of results. It is a nice start to explore such issues, but is relatively simplistic at the moment.
+
+The paper is framed around the issue of the reproducibility crisis in science. However, nothing is being reproduced here, it only identifies that there are differences in different data sources. None of this is surprising. The real question in scientific reproducibility is whether the methods described in some scientific publication can be reproduced by others. This paper suggests that notebooks could be useful, but frankly speaking, isn’t open science sufficient (open source and FAIR+open datasets)?. Moreover, how can we ensure that the datasets used in one study remain accessible in a future study. The fact that there is continuous change in data sources (save bio2rdf which hasn’t changed in 4 years), suggests that reproducing other people’s work may be challenging.
+
+Another concern is that there is insufficient methodology presented to create the environment for the notebook. The authors should explore developing a script to install dependencies e.g. `!pip install requirements.txt` or by using docker. Another good practice would be to include additional blocks to test the connection a SPARQL endpoint prior to running the queries.
+-----------
+-----------
+-----------
+Review 3: Oscar Corcho
+1: (weak accept)
+This paper shows clearly an "eat your own dog food" approach which I really like (subjective view), even if the work that is actually presented is not really too deep and does not address a complex problem (calculating number of items in different SPARQL endpoints).
+
+Anyway, I think that it is important to have this type of papers in a workshop like SemSci since this will spark discussions on the role that Jupyter notebooks can have in terms of reproducibility. I would have liked however to see more references to other works in other areas where this has been dealt with (I know at least that in the area of Astronomy some people have tried to used them - sorry, no references at hand right now). I would have also liked to have some additional discussions form the author on which are aspects that are also relevant for the area of Semantic Web (beyond accessing endpoints, that is, what can be added as well in Jupyter notebooks as extensions in order to help on reproduciility or other problems where notebooks may be relevant).
