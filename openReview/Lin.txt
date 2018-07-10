@@ -1,1 +1,88 @@
-Reviewes will be made available soon
+Review 1
+PC member:        Tobias Kuhn
+
+Overall evaluation:          
+
+1: (weak accept)
+
+This paper presents an approach to extract Linked Data from scanned historical maps in order to support social science researchers. In a multi-step appraoch, scanned maps are segmented, compared, and linked, and can then be queried. The authors test their approach and implementation by running it on a small chosen case.
+
+The paper is well written and interesting, but the connection to the workshop topics should be clarified better. Also, the novelty and practical significance of the approach are a bit unclear. Still, I think this paper will probably give an interesting presentation at the workshop.
+
+Below are some further points:
+
+
+- The paper focuses on railroads, but this focus is nowhere explicitly introduced. Also, the paper seems to focus on the representation of lines, and it is unclear how the approach would extend to other sorts of objects.
+
+
+- Do all the existing sources have to be updated when a new map appears? Wouldn't that also change existing URIs and therefore be a problem with compatibility and identifier stability?
+
+- The experiment in section 5 is not really an experiment, rather something like a very small case study.
+
+- Not clear what is meant by "end-to-end" in the discussion
+
+- Abstract: "available as only as" > "available only as"
+
+- Reference 11 seems incomplete
+
+---
+---
+Review 2
+
+PC member:        Natalia Villanueva-Rosales
+
+Overall evaluation:          
+
+2: (accept)
+
+The paper addresses the challenge of extracting data from documents. More specifically, authors propose integrating vector data from historical maps using linked data. Authors propose that linked data will enable the use of additional knowledge sources to enable rich semantic queries.
+
+The authors propose a 3-step workflow to extract map vector features. It would be useful to explicitly define what are the railroad geographic features being extracted, so that non-expert readers can understand the complexity of this task. Figure 3 illustrates this process with an example but more context would be useful for potential adopters of this work.
+
+
+The paper would benefit from showing the results of the query in Figure 6, which is only mentioned in section 4 and illustrated in Figure 8. How is RDF transformed to create Figure 8? Do you use PostGIS again? Is this a graphical representation manually created to illustrate the results?
+
+
+From the evaluation and validation point of view - How are the results validated from an expert? How do you envision final users interacting with your system? Are users limited to social sciences researchers?
+
+Given that the resulting dataset is in RDF, will GeoSPARQL be considered in your work? If so, is there any additional data preparation required? What other geospatial reasoning is expected from your work (e.g., a railroad is connected by another using a transitive relationship)?
+
+
+The experiment section discusses that it took 36 seconds on average to run all queries for the three testing maps. Please specify the queries or provide a cross-reference to the paper that lists such queries.
+
+
+The topics discussed in the paper and the work-in-progress approach are relevant to the workshop. Adding more context as previously mentioned will improve the ability of workshop participants to contribute and discuss about the presented work.
+
+---
+---          
+---
+
+Review 3
+
+PC member:        Amrapali Zaveri
+
+Overall evaluation:          
+
+0: (borderline paper)
+
+The paper address the problem of converting vector data extracted from multiple historical maps into Linked Data. While the use case is relevant, there is limited novelty in the methods (data conversion, integration and querying as Linked Data). Also, what is the rationale behind using Karma? Which ontology is the data mapped to? I didn't understand the mechanism of handling new maps in an "incremental way". Several details are missing: how much data was converted? what format was the original data in? how was the quality of the mappings? what was the use case/problem in the experimental data that you were looking at?
+
+
+There is no related work discussed. There are several existing approaches for data conversion and interlinking that should be mentioned and discussed. Also, I recommend the authors to see:
+
+- WOMBAT - A Generalization Approach for Automatic Link Discovery
+
+- Automating Geospatial RDF Dataset Integration and Enrichment
+
+- A Systematic Survey of Point Set Distance Measures for Link Discovery
+
+
+The paper is easy to read. There are only a few fixes required:
+
+"linked data" - "Linked Data"
+
+"semantic web" - "Semantic Web"
+
+"Since we want to avoid..." incomplete sentence.
+
+- Footnote 8 does not work
