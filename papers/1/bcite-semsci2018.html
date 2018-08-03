@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      prefix="schema: http://schema.org/ prism: http://prismstandard.org/namespaces/basic/2.0/">
+   <head>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+      <link rel="stylesheet" href="css/bootstrap.min.css"/>
+      <link rel="stylesheet" href="css/rash.css"/>
+      <script src="js/jquery.min.js"> </script>
+      <script src="js/bootstrap.min.js"> </script>
+      <script src="js/rash.js"> </script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+      <title>Creating Open Citation Data with BCite</title>
+      <meta about="#affiliation-1"
+            property="schema:name"
+            content="Department of Classical Philology and Italian Studies, University of Bologna, Bologna, Italy"/>
+      <meta about="#affiliation-2"
+            property="schema:name"
+            content="Department of Computer Science, VU University Amsterdam, Amsterdam, The Netherlands"/>
+      <meta about="#affiliation-3"
+            property="schema:name"
+            content="Oxford e-Research Centre, University of Oxford, Oxford, United Kingdom"/>
+      <meta about="#author-1"
+            name="dc.creator"
+            property="schema:name"
+            content="Marilena Daquino"/>
+      <meta about="#author-1"
+            property="schema:email"
+            content="marilena.daquino2@unibo.it"/>
+      <link about="#author-1"
+            property="schema:affiliation"
+            href="#affiliation-1"/>
+      <meta about="#author-2"
+            name="dc.creator"
+            property="schema:name"
+            content="Ilaria Tiddi"/>
+      <meta about="#author-2"
+            property="schema:email"
+            content="ilaria.tiddi@vu.nl"/>
+      <link about="#author-2"
+            property="schema:affiliation"
+            href="#affiliation-2"/>
+      <meta about="#author-3"
+            name="dc.creator"
+            property="schema:name"
+            content="Silvio Peroni"/>
+      <meta about="#author-3"
+            property="schema:email"
+            content="silvio.peroni@unibo.it"/>
+      <link about="#author-3"
+            property="schema:affiliation"
+            href="#affiliation-1"/>
+      <meta about="#author-4"
+            name="dc.creator"
+            property="schema:name"
+            content="David Shotton"/>
+      <meta about="#author-4"
+            property="schema:email"
+            content="david.shotton@oerc.ox.ac.uk"/>
+      <link about="#author-4"
+            property="schema:affiliation"
+            href="#affiliation-3"/>
+      <meta property="prism:keyword" content="Open Citation Data"/>
+      <meta property="prism:keyword" content="OpenCitations"/>
+      <meta property="prism:keyword" content="Citation Data Curation"/>
+      <meta property="prism:keyword" content="Open Science"/>
+      <meta property="prism:keyword" content="Semantic Publishing"/>
+   </head>
+   <body>
+      <section role="doc-abstract">
+         <h1>Abstract</h1>
+         <p>In the past year we have seen the release of a huge volume of open bibliographic citation data, thanks primarily to the efforts of the <em>Initiative for Open Citations</em> (I4OC, <a href="https://i4oc.org/">https://i4oc.org</a>). However, the incomplete coverage of these data is one of the most important issues that the open scholarship community is currently facing. In this paper we present an approach for creating open citation data while supporting journal editors in their task of curating the reference lists contained within articles submitted to them for publication. Our contributions are twofold: (a) a basic workflow that supports editors in the management and correction of bibliographic references, and (b) a tool, called BCite, that creates open citation data compliant with an existing RDF-based citation repository: the OpenCitations Corpus<a href="#ftn1"> </a>.</p>
+      </section>
+      <section id="__RefHeading__8759_2122972819">
+         <h1>Introduction</h1>
+         <p>The Initiative for Open Citations (I4OC, <a href="https://i4oc.org/">https://i4oc.org</a>) was launched in April 2017 to persuade publishers, who were already depositing their article references in Crossref (<a href="https://crossref.org/">https://crossref.org</a>), to make them open and accessible for reuse. More generally, I4OC campaigned for bibliographic citations to be <strong>structured</strong> (i.e. expressed in machine-readable formats), <strong>separate</strong> (i.e. available without the need to access the source bibliographic products in which the citations are created) and <strong>open</strong> (i.e. freely accessible and reusable) data – what we will term '<strong>open citation data</strong>' in this paper (see <a href="#__RefNumPara__3098_523125019"> </a> for a technical definition of <q>open citation</q>). As a consequence of these activities, about 500 million citation links from 19 million published articles have been made open during the past year and are now available through the Crossref API (<a href="https://api.crossref.org/">https://api.crossref.org</a>). However, they are not exposed natively using Semantic Web technologies. To achieve this further end, several projects and organisations supporting I4OC, such as OpenCitations (<a href="http://opencitations.net/">http://opencitations.net</a>) <a href="#__RefNumPara__8552_1443302088"> </a>, are active in curating open citation data in RDF, so as to be queryable using SPARQL and downloadable in various formats using the normal web content negotiation mechanism.</p>
+         <p>Despite the success of the I4OC campaign, the incomplete <em>coverage</em> of such open citation data is one of the most important issues that the open scholarship community is currently facing. This is due to at least two factors. First, some academic disciplines, in particular the Social Sciences and the Humanities, are inherently under-represented in such citation datasets. In fact, bibliographic references included in articles within these disciplines tend to be missed even in the major commercial citation indexes such as Scopus (<a href="https://www.scopus.com/">https://www.scopus.com/</a>) and Web of Science (<a href="https://clarivate.com/products/web-of-science/">https://clarivate.com/products/web-of-science/</a>). For instance, according to our knowledge, while the article <a href="#__RefNumPara__8554_1443302088"> </a> (published in the journal <em>Conservation Science in Cultural Heritage</em>) references the book chapter <a href="#__RefNumPara__8556_1443302088"> </a>, the related citation is not reported in any citation index. On the other hand, several smaller journals and/or publishers do not have the financial capabilities nor the technical support to submit their citation data to Crossref so as to expose them in a centralized repository as open citation data, where they can easily be reused by other parties.</p>
+         <p>Three particular research questions (RQs) can be derived by analysing the aforementioned situation:</p>
+         <ol>
+            <li>
+               <p>Is it possible to develop a workflow that allows stakeholders (e.g. a publisher, a journal editor, a researcher) to increase the coverage of existing RDF-based open citation datasets?</p>
+            </li>
+            <li>
+               <p>To which extent can stakeholders benefit of such a workflow in the course of their daily activities?</p>
+            </li>
+            <li>
+               <p>How much additional data would such a workflow contribute to the existing RDF-based open citation datasets?</p>
+            </li>
+         </ol>
+         <p>A possible solution to the aforementioned questions is to develop or adopt easy-to-use interfaces that allow users to create new RDF citation data while, at the same time, supporting them in some routine task involving bibliographic data, specifically the task of checking that the reference list of an accepted work has been correctly formatted according to specific requirements of the publisher (e.g. the reference style, the selection of the information included, presence of identifiers and external links) before it appears in the final version-of-record of the work.</p>
+         <p>To this end, we have developed a prototype tool called BCite, which we introduce in this paper. BCite is based on a strategy of reciprocal benefit, enabling editors to obtain 'clean' verified references for the citing article they have in hand, while at the same time transforming those references into RDF data so as potentially to contribute to a public citation corpus. BCite is designed to provide a full workflow for citation discovery, allowing users to specify the references as provided by the authors of the article, to retrieve them in the required format and style, to double-check their correctness, and, finally, to create new open citation data according to the OpenCitations Data Model <a href="#__RefNumPara__8558_1443302088"> </a>, so as to permit their future integration into the OpenCitations Corpus (OCC) <a href="#__RefNumPara__8552_1443302088"> </a>, i.e. the RDF dataset of open citation data maintained by OpenCitations. We have undertaken a preliminary evaluation of BCite's ability to answer the aforementioned research questions. The outcome of our experiments, albeit with a limited set of input documents, is encouraging and shows that the current coverage of citation data in the OpenCitations Corpus could easily be extended by using the application.</p>
+         <p>The rest of the paper is structured as follows. In <a href="#__RefHeading__8816_1443302088"> </a> we introduce the materials and methods we have used for implementing BCite. In <a href="#__RefHeading__8818_1443302088"> </a> we introduce BCite by briefly describing its components and the workflow it implements. In <a href="#__RefHeading__8820_1443302088"> </a> we evaluate our tool by using the reference lists included in some published articles of different disciplines. In <a href="#__RefHeading__8822_1443302088"> </a> we introduce some of the most important related works in the area. Finally, in <a href="#__RefHeading__8824_1443302088"> </a> we conclude the work sketching out some future works.</p>
+      </section>
+      <section id="__RefHeading__8816_1443302088">
+         <h1>Material and Methods</h1>
+         <p>OpenCitations is a scholarly infrastructure organisation dedicated to provision of open bibliographic citations and associated tools and services. To date, the main work of OpenCitations has been the creation and current expansion of the Open Citations Corpus (OCC) <a href="#__RefNumPara__8552_1443302088"> </a>, an open repository of scholarly citation data made available under a Creative Commons public domain dedication, which provides in RDF accurate citation information (bibliographic references) harvested from the scholarly literature. These are described using the SPAR Ontologies <a href="#__RefNumPara__8560_1443302088"> </a> according to the OpenCitations Data Model <a href="#__RefNumPara__8558_1443302088"> </a>, and are made freely available so that others may freely build upon, enhance and reuse them for any purpose, without restriction under copyright or database law. The contents of OCC can be explored by humans using OSCAR, the OpenCitations search interface, and navigated by means of its browse interface LUCINDA. Programmatic access to the OCC is available either using its SPARQL endpoint or its REST API (coming Q3 2018). Additionally, metadata for individual bibliographic entities can be accessed via a simple HTTP request using their individual URIs (e.g. <a href="https://w3id.org/oc/corpus/br/1">https://w3id.org/oc/corpus/br/1</a>).</p>
+         <p>The ingestion of citation data into OCC is currently handled by two Python modules, the <em>Bibliographic Entries Extractor</em> (BEE) and the <em>SPAR Citation Indexer</em> (SPACIN). While BEE is responsible for the creation of JSON files containing reference lists of published articles, SPACIN processes each of these JSON files, retrieves metadata about all citing/cited articles by querying the Crossref and the ORCID APIs, and stores the generated RDF resources both in the file system (as JSON-LD files) and in the OCC triplestore. Parts of these two Python modules have been reused for the development of BCite, which consequently creates open citation data compliant with the OpenCitations Data Model.</p>
+      </section>
+      <section id="__RefHeading__8818_1443302088">
+         <h1>BCite: a bibliographic reference correction service</h1>
+         <p>BCite is a Web application that (a) facilitates some of the tasks of a user (e.g. a journal editor) since it allows him/her to semi-automatically curate the list of bibliographic references included in a soon-to-be-published article, and, simultaneously, (b) creates RDF-based open citation data compliant with the OpenCitations Data Model. According to the OpenCitations Data Model specification, we will refer to an article and to the bibliographic references included in its reference list as the <em>citing bibliographic resource</em> and its <em>bibliographic entries</em> respectively, to the referenced works as the <em>cited bibliographic resources</em>, and to the links between citing and cited works as <em>citations</em>.</p>
+         <p>
+            <strong>Components.</strong> BCite is developed as a Python Web application (using the <em>web.py</em> framework) that can be run on a local machine. It is available on GitHub at <a href="https://github.com/opencitations/bcite">https://github.com/opencitations/bcite</a>, and includes the following logical components: (i) the BCite App, a web interface for data entry and data curation; (ii) the BCite triplestore, a Blazegraph instance (<a href="https://www.blazegraph.com/">https://www.blazegraph.com</a>) for storing the generated RDF triples, the triplestore that is used by OpenCitations for allowing the access to all its RDF repositories; (iii) the BCite API, which is responsible for using the OpenCitations Python modules for creating open citation data and storing them in the triplestore. The BCite workflow and its components are shown in <a href="#refIllustration0"> </a>.</p>
+         <figure id="refIllustration0">
+            <p>
+               <img src="img/img1.png"
+                    alt="BCite's workflow to clean bibliographic data and generate open RDF citations."/>
+            </p>
+            <figcaption>BCite's workflow to clean bibliographic data and generate open RDF citations.</figcaption>
+         </figure>
+         <p>
+            <strong>Workflow.</strong> BCite includes three main activities: the creation of the metadata for a new citing bibliographic resource, the lookup of the cited bibliographic resources specified by its bibliographic entries (and if necessary the correction of those entries using the metadata returned for the cited bibliographic resources), and the update of the triplestore.</p>
+         <p>
+            <em>Creating a citing bibliographic resource.</em> At first, the user inputs via the BCite App all the metadata of a citing bibliographic resource (authors, title, journal, volume, issue, year, publisher, and DOI) and the list of bibliographic entries to be matched. A citation style can also be selected for the formatting of the output references. A request is then sent to the BCite API, which first creates a RDF representation of the citing bibliographic resource compliant with the OpenCitations Data Model, and then writes the generated triples into the BCite triplestore.</p>
+         <p>
+            <em>Reference lookup.</em> For each of the citing bibliographic resource's references (bibliographic entries) provided by the user, a request is sent to the BCite API to look for matches with the cited bibliographic resources within the BCite triplestore. If no matches are found in the BCite triplestore, the BCite API uses the OpenCitations scripts to send a request to the Crossref API for any available metadata on the cited bibliographic resource – and to the ORCID API for author disambiguation purposes. For each of the matched references, an RDF entity for the cited bibliographic resource is either retrieved (if already present in the BCite triplestore) or created (if returned by the Crossref API). Then, the BCite API sends back to the BCite App the text of the bibliographic entry of the cited bibliographic resource, formatted according to the requested citation style, for delivery to the user. If no record is found within the BCite triplestore and the Crossref API does not return any match, an empty string is returned instead.</p>
+         <p>
+            <em>Correction and update.</em> As shown in <a href="#refIllustration1"> </a>, all the results are presented to the user in a table, with the submitted references from the citing bibliographic resource in the first column, and the proposed matched or corrected references in the second column. The user can then (a) accept the proposed text of the bibliographic entry as is; (b) accept it after modifying some part of it within the table itself; or (c) reject the proposed bibliographic entry when it does not specify the intended cited bibliographic resource, keeping instead the originally submitted text for the bibliographic entry. Finally, all the accepted/corrected bibliographic entry texts are sent back to the BCite API, and all the triples relevant to the citing and cited bibliographic resources are stored in the BCite triplestore, including the related provenance information according to the OpenCitations Data Model. An example of the RDF statements generated by BCite is shown as follows (in JSON-LD):</p>
+         <pre>
+            <code>
+{
+"@context": "https://w3id.org/oc/corpus/context.json",
+  {
+    "a": [ "document", "article" ],
+    "citation": [
+      "http://localhost:8000/corpus/br/21",
+      "http://localhost:8000/corpus/br/17"
+    ],
+    "contributor": [
+      "http://localhost:8000/corpus/ar/7",
+      "http://localhost:8000/corpus/ar/5",
+      "http://localhost:8000/corpus/ar/3",
+      "http://localhost:8000/corpus/ar/4",
+      "http://localhost:8000/corpus/ar/6"
+    ],
+    "format": "http://localhost:8000/corpus/re/1",
+    "identifier": [
+      "http://localhost:8000/corpus/id/5",
+      "http://localhost:8000/corpus/id/3"
+    ],
+    "iri": "http://localhost:8000/corpus/br/5",
+    "label": "bibliographic resource 5 [br/5]",
+    "part_of": "http://localhost:8000/corpus/br/6",
+    "prism:publicationDate": {
+      "a": "year_month_day",
+      "value": "2015-03-09"
+    },
+    "reference": [
+      "http://localhost:8000/corpus/be/7",
+      "http://localhost:8000/corpus/be/5",
+      "http://localhost:8000/corpus/be/8",
+      "http://localhost:8000/corpus/be/6",
+      "http://localhost:8000/corpus/be/3",
+      "http://localhost:8000/corpus/be/4"
+    ],
+    "title": "Setting our bibliographic references free: towards open citation data"
+  },
+  {
+    "a": "role",
+    "iri": "http://localhost:8000/corpus/ar/4",
+    "label": "agent role 4 [ar/4]",
+    "next": "http://localhost:8000/corpus/ar/5",
+    "role_of": "http://localhost:8000/corpus/ra/4",
+    "role_type": "author"
+  },
+  {
+    "a": "agent",
+    "fname": "Peroni",
+    "gname": "Silvio",
+    "iri": "http://localhost:8000/corpus/ra/4",
+    "label": "responsible agent 4 [ra/4]"
+  },
+  ...
+}</code>
+         </pre>
+         <figure id="refIllustration1">
+            <p>
+               <img src="img/img2.png"
+                    alt="The BCite App. The editor inputs metadata about citing and cited entities, and obtains the bibliographic references formatted according to a selected citation style."/>
+            </p>
+            <figcaption>The BCite App. The editor inputs metadata about citing and cited entities, and obtains the bibliographic references formatted according to a selected citation style.</figcaption>
+         </figure>
+      </section>
+      <section id="__RefHeading__8820_1443302088">
+         <h1>Evaluation</h1>
+         <p>A preliminary evaluation of BCite was performed with the goal of demonstrating that our tool allows us to answer the three research questions mentioned in the introduction, i.e. to implement a mechanism to increase the coverage of existing RDF-based open citation datasets and to facilitate the editor's task of reference list processing of to-be-published journal articles. In particular, we were interested in (i) measuring the number of the references returned by the BCite API; and (ii) quantifying the contribution of new citation entries to the OpenCitations Corpus (OCC), i.e. how much new knowledge could, in principle, be added to it, bearing in mind that the OCC presently contains mainly articles coming from the biomedical and life science domains. All the data gathered during the experiment are available in <a href="#__RefNumPara__11207_2122972819"> </a>.</p>
+         <section>
+            <h1>Use cases</h1>
+            <p>To demonstrate the aforementioned points, we use three journal articles from different disciplines. They are introduced as follows.</p>
+            <p>A work by Hammarfelt and Haddow <a href="#__RefNumPara__8584_1443302088"> </a> published by the <em>Journal of the Association for Information Science and Technology</em> (JASIST), that deposits all its bibliographic metadata in Crossref, where, presumably, a large proportion of the bibliographic resources referenced by the reference entries contained in the journal's articles are included in Crossref, due to the authoritativeness of the journal in its domain – it is one of the top-rated journals in Library and Information Science. In this scenario, aimed at assessing mostly the ability of BCite to obtain the correct text of the reference entries in the specified format, we modified the reference list of the article to reproduce common mistakes that can be possibly introduced by either article authors or bibliographic curators (missing authors, wrong publication years, incomplete references, etc.). We expected that BCite would return an high number of 'known' reference entries, and that some of these references would already be present in the OCC, due to the authoritativeness of the journal.</p>
+            <p>A work by Biagetti <a href="#__RefNumPara__8586_1443302088"> </a> from the <em>Journal of Library and Information Science</em> (JLIS). While the bibliographic data of the journal are curated and indexed in major citation indexes, this article belongs to the Digital Humanities area that is not fully represented in Crossref – in particular the pure Humanities section. Hence, we expected that BCite would return a lower number of 'known' reference entries. However, in principle, the contribution of new citation data to the OCC should still be high. In fact, it is likely that the cited bibliographic resources are not already present in the Corpus, since it covers mainly a different domain.</p>
+            <p>A work by Citti <a href="#__RefNumPara__8554_1443302088"> </a> from a minor journal of the Humanities domain, i.e. <em>Conservation Science in Cultural Heritage</em>. This journal usually contains articles that cites older bibliographic resources from the same domain, which is poorly covered in Crossref, as mentioned above. Therefore, we expected that BCite would not be able to retrieve a large number of reference entries. However, due to the scholarly domain under consideration, we expected that almost all the retrieved bibliographic resources could be added to the OCC as new citations, since they were likely not to be already contained within the Corpus.</p>
+         </section>
+         <section>
+            <h1>Results</h1>
+            <p>As shown in <a href="#refTable0"> </a>, for the aforementioned articles (<q>Citing article</q>), we recorded the total number of reference entries in their reference lists (column <q>Reference entries</q>); the number of the reference entries – and, consequently, the related cited bibliographic resources – returned by BCite (column <q>Returned by BCite</q>); the number of such cited bibliographic resources that were already present in the OCC (column <q>Already included in the OCC</q>), and thus the potential contribution to the OCC from the bibliographic resources created by BCite that were not previously included in the OCC (column <q>Potential contribution to the OCC</q>).</p>
+            <figure id="refTable0">
+               <table>
+                  <tr>
+                     <th>Citing article (and test case)</th>
+                     <th>Reference entries</th>
+                     <th>Returned by BCite</th>
+                     <th>Already included in the OCC</th>
+                     <th>Potential contribution to the OCC</th>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>Hammarfelt and Haddow <a href="#__RefNumPara__8584_1443302088"> </a> (test case 1)</p>
+                     </td>
+                     <td>
+                        <p>42</p>
+                     </td>
+                     <td>
+                        <p>31 (73.8%)</p>
+                     </td>
+                     <td>
+                        <p>9 (21.4%)</p>
+                     </td>
+                     <td>
+                        <p>22 (70.9%) out of 31</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>Biagetti <a href="#__RefNumPara__8586_1443302088"> </a> (test case 2)</p>
+                     </td>
+                     <td>
+                        <p>30</p>
+                     </td>
+                     <td>
+                        <p>15 (50.0%)</p>
+                     </td>
+                     <td>
+                        <p>5 (16.5%)</p>
+                     </td>
+                     <td>
+                        <p>10 (66.6%) out of 15</p>
+                     </td>
+                  </tr>
+                  <tr>
+                     <td>
+                        <p>Citti <a href="#__RefNumPara__8554_1443302088"> </a> (test case 3)</p>
+                     </td>
+                     <td>
+                        <p>40</p>
+                     </td>
+                     <td>
+                        <p>7 (17.5%)</p>
+                     </td>
+                     <td>
+                        <p>0 (0%)</p>
+                     </td>
+                     <td>
+                        <p>7 (100%) out of 7</p>
+                     </td>
+                  </tr>
+               </table>
+               <figcaption>The outcomes of our experiments run on the three journal articles considered. The figures track the number of reference entries in the citing articles, the number of the results returned by BCite, the number of such resources already included in the OCC (which is a subset of the previous one), and the potential contribution that the result of BCite can bring to the OCC.</figcaption>
+            </figure>
+         </section>
+         <section>
+            <h1>Discussion</h1>
+            <p>While these studies are at a very early stage, some conclusions can already be drawn. First, we can confirm that all the reference entries returned by BCite in the test case 1 were correct, even when the reference entries specified initially as input had been modified to include errors. Indeed, no mismatches were produced by BCite for such altered references. This suggests that BCite could provide good support for editors by automating the reconciliation of bibliographic data.</p>
+            <p>The outcomes of the first two test cases (1 and 2) are pretty close. While, as expected, BCite returned more information for the reference entries in the Hammarfelt and Haddow's article <a href="#__RefNumPara__8584_1443302088"> </a> (i.e. 73.8% of the references were found), the figures of those already included in the OCC and the related potential contribution to the Corpus – i.e. the number of cited bibliographic resources returned by BCite that were not included in the OCC – were similar. In fact, we had that only 21.4% (test case 1) and 16.5% (test case 2) of the bibliographic resources returned by Bcite that were already included in the OCC, thus resulting in a potential addition of 70.9% (test case 1) and 66.6% (test case 2) additional bibliographic resources (among the returned ones) to the Corpus.</p>
+            <p>The outcomes of the test case 3 were more radical, since only a limited amount of input reference entries (17.5% of the total) were returned by BCite. However, the potential contribution to the OCC is incredibly high, since, in this case, none of the returned bibliographic resources where already available in the Corpus.</p>
+            <p>Recalling the research questions introduced in <a href="#__RefHeading__8759_2122972819"> </a>, these outcomes reveal that editors, in principle, could give a significant contribution to the OCC through the addition of the data retrieved by using BCite. This would also allow us to extend significantly the actual coverage of the OCC, since to date it has been mainly covered the biomedical and life sciences works. In addition, in all the three test cases, the reference entries that were not returned by BCite (i.e. 26.2%, 50%, and 82% of the total respectively) were also missing in Crossref and in the OCC. A possible reason for this could be related to the publication dates of the cited bibliographic resources (since older publications are less likely to be openly accessible and available in open indexes), to publications in non-English languages (e.g. publications in Italian), or to publications in specific domains (e.g. Humanities). </p>
+         </section>
+      </section>
+      <section id="__RefHeading__8822_1443302088">
+         <h1>Related Works</h1>
+         <p>Plenty of works have been published in the past years on the main topics touched on in this paper: curation methodologies and tools, and the promotion and release of open scholarly data.</p>
+         <p>Curation methodologies have been extensively studied over the years – see, for instance <a href="#__RefNumPara__8616_1443302088"> </a>
+            <a href="#__RefNumPara__8618_1443302088"> </a>
+            <a href="#__RefNumPara__8620_1443302088"> </a>. Tools to support authors for data curation have been also proposed, such as Recite (<a href="https://reciteworks.com/">https://reciteworks.com/</a>) which however only supports in-text reference checking. Other tools have been released to help users and librarians in the management of citations (e.g. RefWorks, EndNote, Mendeley and Zotero, compared at <a href="https://en.wikipedia.org/wiki/Comparison_of_reference_management_software">https://en.wikipedia.org/wiki/Comparison_of_reference_management_software</a>), although these do not offer the production of RDF data.</p>
+         <p>A number of initiatives for producing open scholarly bibliographic data have been also proposed in the recent years, in addition to the OpenCitations Corpus <a href="#__RefNumPara__8552_1443302088"> </a>. For instance, OpenAIRE (<a href="https://www.openaire.eu/">https://www.openaire.eu/</a>) provides a number of services (from deposition to discovery to statistics) for thousands of Open Access scholarly datasets, although it currently does not include article citations. Springer Nature has recently published its SciGraph (<a href="http://scigraph.springernature.com/">http://scigraph.springernature.com</a>), i.e. an open knowledge graph of Spinger Nature’s scholarly data, but again this does not include article citations. Scholarly Data (<a href="http://www.scholarlydata.org/">http://www.scholarlydata.org/</a>) <a href="#__RefNumPara__8692_1443302088"> </a> allows the creation and exploration of data about Computer Science Conferences and Workshops. WikiCite includes a series of a collaborative activities to build a bibliographic database in Wikidata using a semi-automatic workflow. In the context of the Linked Open Citation Database, the work of <a href="#__RefNumPara__8694_1443302088"> </a> presents a semi-automated system for the creation and storage of citation data to support digital libraries in the data curation workflow.</p>
+      </section>
+      <section id="__RefHeading__8824_1443302088">
+         <h1>Conclusions</h1>
+         <p>In this paper we presented BCite, a service for bibliographic data curation and generation of RDF-based open citation data compliant with the OpenCitations Data Model. We showed how a simple tool based on a strategy for reciprocal benefit can support journals (especially the smaller ones that have less resources for curatorial activities) and their editors, aiding them in the process of bibliographic data cleaning, while also providing potential contributions to an existing open citation data repository, namely the OpenCitations Corpus.</p>
+         <p>In the future, we plan to organise an extensive user-based evaluation of BCite in order to assess also its usability when it is used for addressing the task of bibliographic reference correction in real environments (e.g. in journals management systems such as the Open Journal Systems, <a href="https://pkp.sfu.ca/ojs/">https://pkp.sfu.ca/ojs/</a>). In addition, we also plan to integrate BCite within the OpenCitations ingestion workflow, so as to import additional open citation data directly into the OCC from the BCite App. The current implementation of BCite does not support such direct import, since a careful study about possible issues, e.g. the openness of the license associated to the to-be-published articles, as well as the trustworthiness of BCite users,data quality issues and compliancy with the evolving OpenCitations Data Model, must be performed in advance by test users in association with the OpenCitations team.</p>
+      </section>
+      <section role="doc-bibliography">
+         <h1>References</h1>
+         <ol>
+            <li id="__RefNumPara__8616_1443302088" role="doc-biblioentry">
+               <p>Bailey Jr, C.W.: Digital curation bibliography: Preservation and stewardship of scholarly works, 2012 supplement (2013), <a href="http://digital-scholarship.org/dcbw/">http://digital-scholarship.org/dcbw/</a> 
+               </p>
+            </li>
+            <li id="__RefNumPara__8586_1443302088" role="doc-biblioentry">
+               <p>Biagetti, M.T.: An ontological model for the integration of cultural heritage information: Cidoc-crm. Italian Journal of Library, Archives and Information Science 7(3), 43–77 (2016). <a href="https://doi.org/10.4403/jlis.it-11930">https://doi.org/10.4403/jlis.it-11930</a> 
+               </p>
+            </li>
+            <li id="__RefNumPara__8554_1443302088" role="doc-biblioentry">
+               <p>Citti, F.: Paolo Bufalini and the classics: Towards a digital edition of his <q>note-book</q>. Conservation Science in Cultural Heritage 8(1), 65–89 (2008). <a href="https://doi.org/10.6092/issn.1973-9494/1396">https://doi.org/10.6092/issn.1973-9494/1396</a> 
+               </p>
+            </li>
+            <li id="__RefNumPara__8584_1443302088" role="doc-biblioentry">
+               <p>Hammarfelt, B. , Haddow, G.: Conflicting measures and values: How humanities scholars in australia and sweden use and react to bibliometric indicators. Journal of the Association for Information Science and Technology. <a href="https://doi.org/10.1002/asi.24043">https://doi.org/10.1002/asi.24043</a> 
+               </p>
+            </li>
+            <li id="__RefNumPara__8618_1443302088" role="doc-biblioentry">
+               <p>Johnston, L.R.: Curating research data volume one: Practical strategies for your digital repository. Curating Research Data (2017), <a href="https://www.alastore.ala.org/content/curating-research-data-volume-one-practical-strategies-your-digital-repository">https://www.alastore.ala.org/content/curating-research-data-volume-one-practical-strategies-your-digital-repository</a> 
+               </p>
+            </li>
+            <li id="__RefNumPara__8694_1443302088" role="doc-biblioentry">
+               <p>Lauscher, A., Eckert, K., Galke, L., Scherp, A., Rizvi, S.T.R., Ahmed, S., Dengel, A., Zumstein, P., Klein, A.: Linked Open Citation Database: enabling libraries to contribute to an open and interconnected citation graph (2018)</p>
+            </li>
+            <li id="__RefNumPara__8620_1443302088" role="doc-biblioentry">
+               <p>Lord, P., Macdonald, A., Lyon, L., Giaretta, D.: From data deluge to data curation. In: Proceedings of the 3rd UK e-Science All Hands Meeting. pp. 371–375 (2004), <a href="http://www.ukoln.ac.uk/ukoln/staff/e.j.lyon/150.pdf">http://www.ukoln.ac.uk/ukoln/staff/e.j.lyon/150.pdf</a> 
+               </p>
+            </li>
+            <li id="__RefNumPara__8692_1443302088" role="doc-biblioentry">
+               <p>Nuzzolese, A.G., Gentile, A.L., Presutti, V., Gangemi, A.: Conference linked data: The ScholarlyData project. In: In Proceedings of the 15th International Semantic Web Conference. pp. 150–158 (2016). <a href="https://doi.org/10.1007/978-3-319-46547-0_16">https://doi.org/10.1007/978-3-319-46547-0_16</a> 
+               </p>
+            </li>
+            <li id="__RefNumPara__8558_1443302088" role="doc-biblioentry">
+               <p>Peroni, S., Shotton, D.: OpenCitations Data Model (2018). <a href="https://doi.org/10.6084/m9.figshare.3443876">https://doi.org/10.6084/m9.figshare.3443876</a> 
+               </p>
+            </li>
+            <li id="__RefNumPara__8560_1443302088" role="doc-biblioentry">
+               <p>Peroni, S., Shotton, D.: The SPAR Ontologies. In: Proceedings of the 17th International Semantic Web Conference. Springer (2018). <a href="https://w3id.org/spar/article/spar-iswc2018/">https://w3id.org/spar/article/spar-iswc2018/</a> 
+               </p>
+            </li>
+            <li id="__RefNumPara__8552_1443302088" role="doc-biblioentry">
+               <p>Peroni, S., Shotton, D., Vitali, F.: One year of the OpenCitations Corpus – Releasing RDF-based scholarly citation data into the public domain. In: Proceedings of the 16th International Semantic Web Conference. pp. 184–192 (2017). <a href="https://doi.org/10.1007/978-3-319-68204-4_19">https://doi.org/10.1007/978-3-319-68204-4_19</a> 
+               </p>
+            </li>
+            <li id="__RefNumPara__8556_1443302088" role="doc-biblioentry">
+               <p>Renear, A.H.: Text encoding. A Companion to Digital Humanities 219, 218–239 (2004). <a href="https://doi.org/10.1002/9780470999875.ch17">https://doi.org/10.1002/9780470999875.ch17</a> 
+               </p>
+            </li>
+            <li id="__RefNumPara__3098_523125019" role="doc-biblioentry">
+               <p>Peroni, S., Shotton, D.: Open Citation: Definition. Figshare (2018). <a href="https://doi.org/10.6084/m9.figshare.6683855">https://doi.org/10.6084/m9.figshare.6683855</a>
+               </p>
+            </li>
+            <li id="__RefNumPara__11207_2122972819" role="doc-biblioentry">
+               <p>Tiddi, I., Peroni, S., Daquino, M.: BCite preliminary evaluation. Figshare (2018). <a href="https://doi.org/10.6084/m9.figshare.6462443">https://doi.org/10.6084/m9.figshare.6462443</a> 
+               </p>
+            </li>
+         </ol>
+      </section>
+      <section role="doc-endnotes">
+         <section id="ftn1" role="doc-endnote">
+            <p>This work will be published as part of the book <q>Emerging Topics in Semantic Technologies. ISWC 2018 Satellite Events. E. Demidova, A.J. Zaveri, E. Simperl (Eds.), ISBN: 978-3-89838-736-1, 2018, AKA Verlag Berlin</q>. </p>
+         </section>
+      </section>
+   </body>
+</html>
