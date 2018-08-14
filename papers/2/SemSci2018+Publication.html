@@ -11777,6 +11777,7 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Using-a-Jupyter-Notebook-to-perform-a-reproducible-scientific-analysis-over-semantic-web-sources">Using a Jupyter Notebook to perform a reproducible scientific analysis over semantic web sources<a class="anchor-link" href="#Using-a-Jupyter-Notebook-to-perform-a-reproducible-scientific-analysis-over-semantic-web-sources">&#182;</a></h1><p>Alasdair J G Gray (<a href="http://orcid.org/0000-0002-5711-4872">ORCID:0000-0002-5711-4872</a>)<br>
 <em>Heriot-Watt University, Edinburgh, UK</em></p>
+<p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
 
 </div>
 </div>
@@ -11785,7 +11786,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Abstract:</strong> In recent years there has been a reproducibility crisis in science. Computational notebooks, such as Jupyter, have been touted as a solution to this problem. However, when executing analyses over live SPARQL endpoints, we get different answers depending upon when the analysis in the notebook was executed. In this paper, we identify some of the issues discovered in trying to develop a reproducible analysis over a collection of biomedical data sources and suggest some best practice to overcome these issues.</p>
+<p><strong>Abstract:</strong> In recent years there has been a reproducibility crisis in science. Computational notebooks, such as Jupyter, have been touted as one solution to this problem. However, when executing analyses over live SPARQL endpoints, we get different answers depending upon when the analysis in the notebook was executed. In this paper, we identify some of the issues discovered in trying to develop a reproducible analysis over a collection of biomedical data sources and suggest some best practice to overcome these issues.</p>
 <p><strong>Keywords:</strong> Reproducibility, Computational Notebooks</p>
 
 </div>
@@ -11795,8 +11796,8 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="1.-Introduction">1. Introduction<a class="anchor-link" href="#1.-Introduction">&#182;</a></h2><p>In recent years there has been a reproducibility crisis in science (<a href="#Baker2016">Baker; 2016</a>). Computational notebooks such as Jupyter (<a href="#Kluyver2016">Kluyver et al; 2016</a>) that combine analysis with narrative have been touted as a solution to this problem. The approach is known as Literate Programming (<a href="#Knuth1984">Knuth; 1984</a>). A key idea of Literate Programming is that the documentation of the analysis code is kept up to date with the code, as they are edited in the same environment. When writing the analysis, the author is forced to think about how others can understand and interpret the analysis, thus writing analysis in a way to aid understanding of the code (<a href="#Piccolo2016">Piccolo, Frampton; 2016</a>). Ideally, the computation notebook becomes the publication, as this notebook attempts. Specifically, in this notebook we investigate the feasibility of publishing a reusable data analysis paper as a Jupyter Notebook in the Semanatic Web community.</p>
-<p>There is existing work on publishing computational workflows via notebooks (<a href="#Kluyver2016">Kluyver et al; 2016</a>). Indeed, in their paper Kluyver et al recognise some of the limitations of academic publishing within a Jupyter notebook, particularly in the lack of support for citations. In this work, we are looking at performing an analysis over pharmacology Linked Data.  The contents of this notebook provide a good starting point for those who want to do an analysis of the content of the chemical substances known in some of the leading chemisty databases used to support early stage pharmacology research, and supports the understanding of the evolution of their content. The analysis will compare the compound count between ChEBI (<a href="#Hastings2016">Hastings et al; 2016</a>), ChEMBL (<a href="#Gaulton2017">Gaulton et al; 2017</a>), DrugBank (<a href="#Wishart2018">Wishart et al; 2018</a>), and Guide to Pharmacology (<a href="#Harding2018">Harding et al; 2018</a>).</p>
+<h2 id="1.-Introduction">1. Introduction<a class="anchor-link" href="#1.-Introduction">&#182;</a></h2><p>In recent years there has been a reproducibility crisis in science (<a href="#Baker2016">Baker; 2016</a>). Open science advocates to overcome this crisis by openly publishing your work, included data, methods, and analysis (<a href="#Pearce2012">Pearce; 2012</a>). Computational notebooks such as Jupyter (<a href="#Kluyver2016">Kluyver et al; 2016</a>) that combine analysis with narrative are one approach to publishing scientific analysis methods. The approach is known as Literate Programming (<a href="#Knuth1984">Knuth; 1984</a>). A key idea of Literate Programming is that the documentation of the analysis code is kept up to date with the code, as they are edited in the same environment. When writing the analysis, the author is forced to think about how others can understand and interpret the analysis, thus writing analysis in a way to aid understanding of the code (<a href="#Piccolo2016">Piccolo, Frampton; 2016</a>). Ideally, the computation notebook becomes the publication, as this notebook attempts. Specifically, in this notebook we investigate the feasibility of publishing a reusable data analysis paper as a Jupyter Notebook in the Semanatic Web community.</p>
+<p>There is existing work on publishing computational workflows via notebooks (<a href="#Kluyver2016">Kluyver et al; 2016</a>), and works in several scientific disciplines that have also used Jupyter Notebooks, e.g. Astronomy (<a href="#Farr2017">Farr et al; 2017</a>, <a href="#Medvedev2016">Medvedev et al; 2016</a>), Biology (<a href="#Gruning2017">Grüning et al; 2017</a>), and Oceanography (<a href="#Turner2018">Turner and Gill; 2018</a>). In their paper Kluyver et al (<a href="#Kluyver2016">2016</a>) recognise some of the limitations of academic publishing within a Jupyter notebook, particularly in the lack of support for citations. In this work, we are looking at performing an analysis over pharmacology Linked Data.  The contents of this notebook provide a good starting point for those who want to do an analysis of the content of the chemical substances known in some of the leading chemisty databases used to support early stage pharmacology research, and supports the understanding of the evolution of their content. The analysis will compare the compound count between ChEBI (<a href="#Hastings2016">Hastings et al; 2016</a>), ChEMBL (<a href="#Gaulton2017">Gaulton et al; 2017</a>), DrugBank (<a href="#Wishart2018">Wishart et al; 2018</a>), and Guide to Pharmacology (<a href="#Harding2018">Harding et al; 2018</a>).</p>
 <p>In the rest of this notebook, we will first setup our computational environment in <a href="#Method">Section 2</a>. We will then perform a simple, but crucial, analysis in <a href="#Analysis">Section 3</a> that does a crude comparison over four major pharmacology datasets.  We will then discuss and conclude the paper in <a href="#Conclusions">Section 4</a>.</p>
 
 </div>
@@ -11831,6 +11832,8 @@ div#notebook {
 <li><a href="https://rdflib.github.io/sparqlwrapper/doc/1.8.1/">SPARQLWrapper</a>: 1.8.1</li>
 <li>JSON (<a href="https://pypi.org/project/simplejson/">simplejson</a>): 3.15</li>
 </ul>
+<p>The SPARQLWrapper dependency is captured in the <a href="https://github.com/AlasdairGray/SemSci2018/blob/master/requirements.txt">requirements.txt</a> file on GitHub which enables this notebook to be run through the <a href="https://mybinder.org">Binder Service</a>.<br>
+<a href="https://mybinder.org/v2/gh/AlasdairGray/SemSci2018/master?filepath=SemSci2018%20Publication.ipynb"><img src="https://mybinder.org/badge.svg" alt="Binder"></a></p>
 
 </div>
 </div>
@@ -12023,12 +12026,12 @@ div#notebook {
 <span class="s2">PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;</span>
 <span class="s2">PREFIX pav: &lt;http://purl.org/pav/&gt;</span>
 
-<span class="s2">SELECT  ?version ?date</span>
+<span class="s2">SELECT  ?version ?dateOfLastUpdate</span>
 <span class="s2">where {</span>
 <span class="s2">  &lt;http://rdf.ebi.ac.uk/dataset/chembl&gt; pav:hasCurrentVersion ?currentVersion.</span>
 <span class="s2">  ?currentVersion pav:version ?version ;</span>
 <span class="s2">                  dcterms:hasDistribution ?dist.</span>
-<span class="s2">  ?dist pav:lastUpdateOn ?date</span>
+<span class="s2">  ?dist pav:lastUpdateOn ?dateOfLastUpdate</span>
 <span class="s2">}</span>
 <span class="s2">&quot;&quot;&quot;</span>
 <span class="n">queryEBI</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
@@ -12050,11 +12053,70 @@ div#notebook {
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;head&#39;: {&#39;vars&#39;: [&#39;version&#39;, &#39;date&#39;]},
- &#39;results&#39;: {&#39;bindings&#39;: [{&#39;date&#39;: {&#39;datatype&#39;: &#39;http://www.w3.org/2001/XMLSchema#dateTime&#39;,
+<pre>{&#39;head&#39;: {&#39;vars&#39;: [&#39;version&#39;, &#39;dateOfLastUpdate&#39;]},
+ &#39;results&#39;: {&#39;bindings&#39;: [{&#39;dateOfLastUpdate&#39;: {&#39;datatype&#39;: &#39;http://www.w3.org/2001/XMLSchema#dateTime&#39;,
      &#39;type&#39;: &#39;typed-literal&#39;,
-     &#39;value&#39;: &#39;2018-01-05T00:00:00.0&#39;},
-    &#39;version&#39;: {&#39;type&#39;: &#39;literal&#39;, &#39;value&#39;: &#39;24.0&#39;}}]}}</pre>
+     &#39;value&#39;: &#39;2018-01-05T00:00:00Z&#39;},
+    &#39;version&#39;: {&#39;type&#39;: &#39;literal&#39;, &#39;value&#39;: &#39;24.1&#39;}}]}}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We now determine the version of ChEBI that is loaded in the EBI triplestore. Note that slightly different metadata is available for ChEBI so we retrieve the date issued as the last update date is not available. However, the version URL may indicate that the dataset has been updated more recently than the last issue date. When executing in July 2018 the version is <code>http://rdf.ebi.ac.uk/dataset/chebi/03-07-2018</code> while the issued date is <code>2018-01-01</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Query to determine the version of ChEBI loaded</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">PREFIX dcterms: &lt;http://purl.org/dc/terms/&gt;</span>
+<span class="s2">PREFIX pav: &lt;http://purl.org/pav/&gt;</span>
+
+<span class="s2">SELECT  ?version ?dateIssued</span>
+<span class="s2">where {</span>
+<span class="s2">  &lt;http://rdf.ebi.ac.uk/dataset/chebi&gt; pav:hasCurrentVersion ?currentVersion.</span>
+<span class="s2">  ?currentVersion pav:version ?version ;</span>
+<span class="s2">                  dcterms:issued ?dateIssued</span>
+<span class="s2">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">queryEBI</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;head&#39;: {&#39;vars&#39;: [&#39;version&#39;, &#39;dateIssued&#39;]},
+ &#39;results&#39;: {&#39;bindings&#39;: [{&#39;dateIssued&#39;: {&#39;datatype&#39;: &#39;http://www.w3.org/2001/XMLSchema#date&#39;,
+     &#39;type&#39;: &#39;typed-literal&#39;,
+     &#39;value&#39;: &#39;2018-01-01&#39;},
+    &#39;version&#39;: {&#39;type&#39;: &#39;literal&#39;,
+     &#39;value&#39;: &#39;http://rdf.ebi.ac.uk/dataset/chebi/03-07-2018&#39;}}]}}</pre>
 </div>
 
 </div>
@@ -12073,7 +12135,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Define Guide to Pharmacology SPARQL endpoint and function to run queries over it</span>
@@ -12146,7 +12208,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Define function to extract count result from JSON SPARQL result set</span>
@@ -12218,7 +12280,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>{&#39;ChEBI&#39;: &#39;184393&#39;, &#39;ChEMBL&#39;: &#39;1820035&#39;, &#39;DrugBank&#39;: &#39;6810&#39;, &#39;GtPDb&#39;: &#39;7065&#39;}
+<pre>{&#39;ChEBI&#39;: &#39;90510&#39;, &#39;ChEMBL&#39;: &#39;1820035&#39;, &#39;DrugBank&#39;: &#39;6810&#39;, &#39;GtPDb&#39;: &#39;7146&#39;}
 </pre>
 </div>
 </div>
@@ -12231,43 +12293,49 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>As can already be seen, by June 2018 the content of the SPARQL endpoints differs from that in the PubChem snapshot from March 2018. See table below.</p>
+<p>The table below captures the counts of the number of InChI keys in PubChem in March 2018, and then the SPARQL queries which have been executed in June and July of 2018.</p>
 <table>
 <thead><tr>
-<th>Dataset</th>
-<th>PubChem</th>
-<th>SPARQL</th>
+<th style="text-align:left">Dataset</th>
+<th style="text-align:right">PubChem <br>(2018-03-15)</th>
+<th style="text-align:right">SPARQL <br>(2018-06-08)</th>
+<th style="text-align:right">SPARQL <br>(2018-07-24)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>ChEBI</td>
-<td>91,407</td>
-<td>184,393</td>
+<td style="text-align:left">ChEBI</td>
+<td style="text-align:right">91,407</td>
+<td style="text-align:right">184,393</td>
+<td style="text-align:right">90,510</td>
 </tr>
 <tr>
-<td>ChEMBL</td>
-<td>1,729,327</td>
-<td>1,820,035</td>
+<td style="text-align:left">ChEMBL</td>
+<td style="text-align:right">1,729,327</td>
+<td style="text-align:right">1,820,035</td>
+<td style="text-align:right">1,820,035</td>
 </tr>
 <tr>
-<td>DrugBank</td>
-<td>9,789</td>
-<td>6,810</td>
+<td style="text-align:left">DrugBank</td>
+<td style="text-align:right">9,789</td>
+<td style="text-align:right">6,810</td>
+<td style="text-align:right">6,810</td>
 </tr>
 <tr>
-<td>Guide to Pharmacology</td>
-<td>6,969</td>
-<td>7,065</td>
+<td style="text-align:left">Guide to Pharmacology</td>
+<td style="text-align:right">6,969</td>
+<td style="text-align:right">7,065</td>
+<td style="text-align:right">7,146</td>
 </tr>
 <tr>
-<td>Intersection</td>
-<td>1,523</td>
-<td>--</td>
+<td style="text-align:left">Intersection</td>
+<td style="text-align:right">1,523</td>
+<td style="text-align:right">--</td>
+<td style="text-align:right">--</td>
 </tr>
 </tbody>
 </table>
-<p>In general, the datasets contain more data. This is to be expected as the datasets are adding more content. The exception to this is DrugBank, which has seen a decrease. This is due to the Bio2RDF endpoint offering an older version of the dataset.</p>
+<p>The ChEMBL and Guide to Pharmacology datasets contain more data in the SPARQL endpoint than the PubChem version. This is to be expected as the datasets available through the SPARQL endpoints are newer and the datasets are adding more content. The Guide to Pharmacology change between June and July corresponds with the release of version <a href="https://blog.guidetopharmacology.org/2018/06/28/database-release-2018-3/">2018.3</a> on 28 June 2018. The exception to this is DrugBank, which has seen a decrease. This is due to the Bio2RDF endpoint offering an older version of the dataset.</p>
 <p>On PubChem we were able to calculate the intersection of the datasets, i.e. we could count the number of substances that are contained in all the datasets. This has not been possible with the SPARQL endpoints due to the distributed nature of the endpoints and the unreliability of federated queries. There are also complications due to the way that the substance structures (InChI Keys) are represented in the various datasets. The following queries demonstrate the output of the first 5 results of each dataset.</p>
 
 </div>
@@ -12275,7 +12343,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Show 5 InChI Keys stored in ChEBI</span>
@@ -12298,7 +12366,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[8]:</div>
+<div class="prompt output_prompt">Out[9]:</div>
 
 
 
@@ -12307,19 +12375,19 @@ div#notebook {
 <pre>{&#39;head&#39;: {&#39;vars&#39;: [&#39;inchikey&#39;]},
  &#39;results&#39;: {&#39;bindings&#39;: [{&#39;inchikey&#39;: {&#39;datatype&#39;: &#39;http://www.w3.org/2001/XMLSchema#string&#39;,
      &#39;type&#39;: &#39;typed-literal&#39;,
-     &#39;value&#39;: &#39;NVKAWKQGWWIWPM-ABEVXSGRSA-N&#39;}},
+     &#39;value&#39;: &#39;MHWLWQUZZRMNGJ-UHFFFAOYSA-N&#39;}},
    {&#39;inchikey&#39;: {&#39;datatype&#39;: &#39;http://www.w3.org/2001/XMLSchema#string&#39;,
      &#39;type&#39;: &#39;typed-literal&#39;,
-     &#39;value&#39;: &#39;NVKAWKQGWWIWPM-ABEVXSGRSA-N&#39;}},
+     &#39;value&#39;: &#39;DURULFYMVIFBIR-UHFFFAOYSA-N&#39;}},
    {&#39;inchikey&#39;: {&#39;datatype&#39;: &#39;http://www.w3.org/2001/XMLSchema#string&#39;,
      &#39;type&#39;: &#39;typed-literal&#39;,
-     &#39;value&#39;: &#39;ATHGHQPFGPMSJY-UHFFFAOYSA-N&#39;}},
+     &#39;value&#39;: &#39;MYKUKUCHPMASKF-VIFPVBQESA-N&#39;}},
    {&#39;inchikey&#39;: {&#39;datatype&#39;: &#39;http://www.w3.org/2001/XMLSchema#string&#39;,
      &#39;type&#39;: &#39;typed-literal&#39;,
-     &#39;value&#39;: &#39;ATHGHQPFGPMSJY-UHFFFAOYSA-N&#39;}},
+     &#39;value&#39;: &#39;IEDVJHCEMCRBQM-UHFFFAOYSA-N&#39;}},
    {&#39;inchikey&#39;: {&#39;datatype&#39;: &#39;http://www.w3.org/2001/XMLSchema#string&#39;,
      &#39;type&#39;: &#39;typed-literal&#39;,
-     &#39;value&#39;: &#39;JKLRIMRKZBSSED-UHFFFAOYSA-N&#39;}}]}}</pre>
+     &#39;value&#39;: &#39;ZZUFCTLCJUWOSV-UHFFFAOYSA-N&#39;}}]}}</pre>
 </div>
 
 </div>
@@ -12330,7 +12398,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Show 5 InChI Keys stored in ChEMBL</span>
@@ -12355,7 +12423,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[9]:</div>
+<div class="prompt output_prompt">Out[10]:</div>
 
 
 
@@ -12363,11 +12431,11 @@ div#notebook {
 <div class="output_text output_subarea output_execute_result">
 <pre>{&#39;head&#39;: {&#39;vars&#39;: [&#39;inchiKey&#39;]},
  &#39;results&#39;: {&#39;bindings&#39;: [{&#39;inchiKey&#39;: {&#39;type&#39;: &#39;literal&#39;,
-     &#39;value&#39;: &#39;NUNJVAPBPSWAAF-AATRIKPKSA-N&#39;}},
-   {&#39;inchiKey&#39;: {&#39;type&#39;: &#39;literal&#39;, &#39;value&#39;: &#39;JJMSWOAYYIOHPY-UHFFFAOYSA-N&#39;}},
-   {&#39;inchiKey&#39;: {&#39;type&#39;: &#39;literal&#39;, &#39;value&#39;: &#39;PGPLULVIABTRIF-YNHSGCSHSA-N&#39;}},
-   {&#39;inchiKey&#39;: {&#39;type&#39;: &#39;literal&#39;, &#39;value&#39;: &#39;QLZXDQMITOAIAU-KCHLEUMXSA-N&#39;}},
-   {&#39;inchiKey&#39;: {&#39;type&#39;: &#39;literal&#39;, &#39;value&#39;: &#39;ODLHCKMRHURGDZ-MIBBOOFZSA-N&#39;}}]}}</pre>
+     &#39;value&#39;: &#39;YAPYGARUFVRIHX-ACCUITESSA-N&#39;}},
+   {&#39;inchiKey&#39;: {&#39;type&#39;: &#39;literal&#39;, &#39;value&#39;: &#39;IDDOHJSCLCKCAC-UHFFFAOYSA-N&#39;}},
+   {&#39;inchiKey&#39;: {&#39;type&#39;: &#39;literal&#39;, &#39;value&#39;: &#39;JJVMPIBZWGJKIV-GLGDLAMFSA-N&#39;}},
+   {&#39;inchiKey&#39;: {&#39;type&#39;: &#39;literal&#39;, &#39;value&#39;: &#39;MZITZBZTMCXZQS-FVNDCLGZSA-N&#39;}},
+   {&#39;inchiKey&#39;: {&#39;type&#39;: &#39;literal&#39;, &#39;value&#39;: &#39;KPNTUIZGUAJMMK-DWKDZXJCSA-N&#39;}}]}}</pre>
 </div>
 
 </div>
@@ -12378,7 +12446,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Show 5 InChI Keys stored in DrugBank</span>
@@ -12401,7 +12469,7 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[10]:</div>
+<div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -12447,14 +12515,24 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a id='Conclusions'></a></p>
-<h2 id="4.-Conclusions">4. Conclusions<a class="anchor-link" href="#4.-Conclusions">&#182;</a></h2><p>In this notebook, we have conducted a very simple analysis, counting the number of compounds in different pharmacology datasets. However, it has raised several questions such as:</p>
+<h2 id="4.-Conclusions">4. Conclusions<a class="anchor-link" href="#4.-Conclusions">&#182;</a></h2><p>In this notebook, we have conducted a very simple analysis, counting the number of compounds in different pharmacology datasets. The purpose of publishing this as a notebook (c.f. open science) is to enable the repetition of this computation, since the datasets are continuously evolving, and to share our methods in a way that allows others to reproduce our results whilst also reading our narrative. However, this has raised the following questions:</p>
 <ol>
 <li>How should you present the computational environment used?</li>
 <li>How should you present the results of the original computation against those of the live results when the content of datasets is evolving?</li>
 </ol>
 <p>For the first question, you would ideally use the computational environment to report about itself. However, this is not always straightforward. Libraries don't necessarily report their versions, and SPARQL endpoints all have different approaches (or perhaps none) for providing metadata about their datasets.</p>
-<p>The second question focuses on recognising that sources change over time, often gaining more date. The publication of this notebook captures a point in time, or indeed two. The first is the time when the query was run over the PubChem database and the second when the SAPRQL queries were executed. This allowed us to compare the results. In this notebook we chose to copy the results of the computation for publication into the text in order to allow others reusing the notebook to be able to compare their answers. We hope that this proves to be a useful approach.</p>
-<p>We have deliberately not used any Jupyter extensions in this notebook, believing that this will aid reproducibility into the future. However, this complicated the generating of the paper in this notebook, as there is no inbuilt support for academic references. If the use of computational notebooks is to grow, then referencing needs to become a core feature. In the future, it would be interesting to investigate the additional effort required in making the notebook itself a semantic resource.</p>
+<p>The second question focuses on recognising that sources change over time, often gaining more data, although as shown with the ChEBI data sometimes containing errors too. The publication of this notebook captures a point in time, or indeed three. The first is the time when the query was run over the PubChem database (15 March 2018), the second when the SAPRQL queries were executed for the peer review version of this notebook (8 June 2018), and the third when the camera ready version was prepared (24 July 2018). This allowed us to compare the results at the different timepoints. In this notebook we chose to copy the results of the computation for publication into the text in order to allow others reusing the notebook to be able to compare their answers. We hope that this proves to be a useful approach. We note that the reuse of this notebook relies on the continued availability of the SPARQL endpoints. Newer computational notebook environments are being developed that overcome some of the limitations of Jupyter, e.g. Wrattler (<a href="#Petricek2018">Petricek et al; 2018</a>), although these still need to mature and gain wider uptake by the community.</p>
+<p>We have deliberately not used any Jupyter extensions in this notebook, believing that this will aid reproducibility into the future. However, this complicated the generating of the paper in this notebook, as there is no inbuilt support for academic references. If the use of computational notebooks is to grow, then referencing needs to become a core feature. In the future, it would be interesting to investigate the additional effort required in making the notebook itself a semantic resource. There have already been several discussions on embedding metadata in Jupyter Notebooks. However, there is no UI support for entering this metadata, no standard approach for representing authorship metadata, and no support for creating this as semantic annotations.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Acknowledgements">Acknowledgements<a class="anchor-link" href="#Acknowledgements">&#182;</a></h2><p>This work was conducted through the ELIXIR-EXCELERATE project that is funded by the European Commission within the Research Infrastructures programme of Horizon 2020, grant number 676559.</p>
+<p>The author would also like to thank the reviewers – <a href="http://orcid.org/0000-0001-8296-8629">Idafen Santana-Perez</a>, <a href="https://orcid.org/0000-0003-4727-9435">Michel Dumontier</a>, and <a href="https://orcid.org/0000-0002-9260-0753">Oscar Corcho</a> – for their helpful <a href="https://semsci.github.io/SemSci2018/openReview/Gray.txt">comments</a> that have been used to improve the published version of this notebook.</p>
 
 </div>
 </div>
@@ -12469,9 +12547,15 @@ DOI: <a href="https://doi.org/10.1038/533452a">10.1038/533452a</a></p>
 <p><a id='Callahan2013'></a>
 Callahan A., Cruz-Toledo J., Ansell P., Dumontier M. Bio2RDF Release 2: Improved Coverage, Interoperability and Provenance of Life Science Linked Data. ESWC 2013: 200-212. (2013)<br>
 DOI: <a href="https://doi.org/10.1007/978-3-642-38288-8_14">10.1007/978-3-642-38288-8_14</a></p>
+<p><a id='Farr2017'></a>
+Farr, W. M., Stevenson, S., Coleman Miller, M., Mandel, I., Farr, B., and Vecchio, A. Distinguishing spin-aligned and isotropic black hole populations with gravitational waves. Nature 548, 426 (2017).<br>
+DOI: <a href="https://doi.org/10.0.4.14/nature23453">10.0.4.14/nature23453</a></p>
 <p><a id='Gaulton2017'></a>
 Gaulton A, Hersey A, Nowotka M, Bento AP, Chambers J, Mendez D, Mutowo P, Atkinson F, Bellis LJ, Cibrián-Uhalte E, Davies M, Dedman N, Karlsson A, Magariños MP, Overington JP, Papadatos G, Smit I, Leach AR. The ChEMBL database in 2017. Nucleic Acids Research, 45(D1) D945-D954. (2017)<br>
 DOI: <a href="https://doi.org/10.1093/nar/gkw1074">10.1093/nar/gkw1074</a></p>
+<p><a id='Gruning2017'></a>
+Grüning BA, Rasche E, Rebolledo-Jaramillo B, Eberhard C, Houwaart T, Chilton J, Coraor N,  Backofen R,  Taylor J, and Nekrutenko A. Jupyter and Galaxy: Easing entry barriers into complex data analyses for biomedical researchers. PLoS Comput Biol 13(5): e1005425 (2017).<br>
+DOI: <a href="https://doi.org/10.1371/journal.pcbi.1005425">10.1371/journal.pcbi.1005425</a></p>
 <p><a id='Harding2018'></a>
 Harding SD, Sharman JL, Faccenda E, Southan C, Pawson AJ, Ireland S, Gray AJG, Bruce L, Alexander SPH, Anderton S, Bryant C, Davenport AP, Doerig C, Fabbro D, Levi-Schaffer F, Spedding M, Davies JA; NC-IUPHAR. The IUPHAR/BPS Guide to PHARMACOLOGY in 2018: updates and expansion to encompass the new guide to IMMUNOPHARMACOLOGY. Nucleic Acids Research, 46 (Issue D1): D1091-D1106 (2018).<br>
 DOI: <a href="https://doi.org/10.1093/nar/gkx1121">10.1093/nar/gkx1121</a></p>
@@ -12482,17 +12566,41 @@ DOI: <a href="https://doi.org/10.1093/nar/gkv1031">10.1093/nar/gkv1031</a></p>
 Jupp S, Malone J, Bolleman J, Brandizi M., Davies M., Garcia L., Gaulton A., Gehant S., Laibe C., Redaschi N., Wimalaratne S.M., Martin M., Le Novère N., Parkinson H., Birney E. and Jenkinson A.M. The EBI RDF Platform: Linked Open Data for the Life Sciences Bioinformatics 30 1338-1339. 2014.<br>
 DOI: <a href="https://doi.org/10.1093/bioinformatics/btt765">10.1093/bioinformatics/btt765</a></p>
 <p><a id='Kluyver2016'></a>
-Kluyver, T., Ragan-Kelley, B., Pérez, F., Granger, B.E., Bussonnier, M., Frederic, J., Kelley, K., Hamrick, J.B., Grout, J., Corlay, S. and Ivanov, P. Jupyter Notebooks-a publishing format for reproducible computational workflows. In ELPUB, 87-90 (2016).<br>
+Kluyver T., Ragan-Kelley B., Pérez F., Granger B.E., Bussonnier M., Frederic J., Kelley K., Hamrick J.B., Grout J., Corlay S. and Ivanov P. Jupyter Notebooks-a publishing format for reproducible computational workflows. In ELPUB, 87-90 (2016).<br>
 DOI: <a href="https://doi.org/10.3233/978-1-61499-649-1-87">10.3233/978-1-61499-649-1-87</a></p>
 <p><a id='Knuth1984'></a>
 Knuth, D. E. Literate Programming. The Computer Journal 27, 97–111 (1984).<br>
 DOI: <a href="https://doi.org/10.1093/comjnl/27.2.97">10.1093/comjnl/27.2.97</a></p>
+<p><a id='Medvedev2016'></a>
+Medvedev D, Lemson G, and Rippin M. SciServer Compute: Bringing Analysis Close to the Data. In Proceedings of the 28th International Conference on Scientific and Statistical Database Management (SSDBM '16), Article 27, 4 pages (2016).<br>
+DOI: <a href="https://doi.org/10.1145/2949689.2949700">10.1145/2949689.2949700</a></p>
+<p><a id='Pearce2012'></a>
+Pearce, J. M. Open Source Research in Sustainability. Sustainability: The Journal of Record, 5, 238–243 (2012).<br>
+DOI: <a href="https://doi.org/10.1089/SUS.2012.9944">10.1089/SUS.2012.9944</a></p>
+<p><a id='Petricek2018'></a>
+Petricek, T., Geddes, J. and Sutton, C. Wrattler: Reproducible, live and polyglot notebooks. in 10th USENIX Workshop on The Theory and Practice of Provenance (TaPP 2018) (2018).<br>
+<a href="https://www.usenix.org/conference/tapp2018/presentation/petricek">https://www.usenix.org/conference/tapp2018/presentation/petricek</a></p>
 <p><a id='Piccolo2016'></a>
-Piccolo, S. R. &amp; Frampton, M. B. Tools and techniques for computational reproducibility. Gigascience 5, 30 (2016).<br>
+Piccolo S.R. and Frampton M. B. Tools and techniques for computational reproducibility. Gigascience 5, 30 (2016).<br>
 DOI: <a href="https://doi.org/10.1186/s13742-016-0135-4">10.1186/s13742-016-0135-4</a></p>
+<p><a id='Turner2018'></a>
+Turner C., and Gill, I. Developing a Data Management Platform for the Ocean Science Community. Marine Technology Society Journal 52, no. 3: 28-32 (2018).<br>
+DOI: <a href="https://doi.org/10.4031/MTSJ.52.3.8">10.4031/MTSJ.52.3.8</a></p>
 <p><a id='Wishart2018'></a>
 Wishart DS, Feunang YD, Guo AC, Lo EJ, Marcu A, Grant JR, Sajed T, Johnson D, Li C, Sayeeda Z, Assempour N, Iynkkaran I, Liu Y, Maciejewski A, Gale N, Wilson A, Chin L, Cummings R, Le D, Pon A, Knox C, Wilson M. DrugBank 5.0: a major update to the DrugBank database for 2018. Nucleic Acids Research, 2017.<br>
 DOI: <a href="https://10.1093/nar/gkx1037">10.1093/nar/gkx1037</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Version-History">Version History<a class="anchor-link" href="#Version-History">&#182;</a></h2><ul>
+<li>2018-07-31 Camera ready version (<a href="https://github.com/AlasdairGray/SemSci2018/commit/e7d1dcee4fba3b64038761dadcf4c173cac8f9e4">e7d1dce</a>) </li>
+<li>2018-06-08 Version submitted to Semantic Science 2018 workshop (<a href="https://github.com/AlasdairGray/SemSci2018/commit/8130ddaa41238d4fc65a2a198fde2953689db3e0">8130dda</a>)</li>
+</ul>
 
 </div>
 </div>
